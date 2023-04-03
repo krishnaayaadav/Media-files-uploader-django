@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+   body, .dk{
+      background-color:black;
+      color: white;
+   }
+div.gallery {
+}
+
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.responsive {
+  padding: 0 6px;
+  float: left;
+  width: 24.99999%;
+}
+
+@media only screen and (max-width: 700px) {
+  .responsive {
+    width: 49.99999%;
+    margin: 6px 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .responsive {
+    width: 100%;
+  }
+}
+
+.mg{
+  margin-left: 20px;
+}
+.dk{
+border-style: none;
+}
+
+.dk a{
+   text-decoration: none;
+   font-size: 21px;
+}
+
+.dk a:hover{
+   color: green;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
+</head>
+<body>
+
+
+<h2>Image Uploader <button class="dk"><a href="{% url 'add_new_img' %}">Upload New</a></button></h2>
+
+      {% if messages%}
+          {% for msg in messages  %}
+
+             <p class='text-center'><strong>{{msg}}</strong></p>
+          
+          {% endfor %}
+        {% endif %}
+
+
+{% for img in all_imgs %}
+
+
+<div class="responsive" width="600" height="400">
+  <div class="gallery">
+    <a target="" href="{% url 'update_img' img.id %}">
+      <img src="{{img.image.url}} " alt="Mountains" >
+    </a>
+    <div class="desc"><strong> Uploaded By: {{img.upload_by}} At: {{img.upload_at}} </strong></div>
+  </div>
+</div>
+{% endfor %}
+
+
+
+</body>
+</html>
+
+
